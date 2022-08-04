@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './App.css';
 import { Footer, Header, Widget } from './components/common';
 import { MainLayout } from './components/Layout';
@@ -10,6 +10,14 @@ import { Student } from './models/student';
 
 function App() {
   const [count, setCount] = useState(0);
+  // const loading = false;
+
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false);
+    }, 2000);
+  }, []);
 
   function abc() {}
 
@@ -21,8 +29,32 @@ function App() {
   function handleStudentClick(student: Student) {
     console.log('student click', student);
   }
+
+  // if (loading) return <p>Loading.....</p>;
+
   return (
     <div>
+      {loading && <p>Loading....</p>}
+      {loading ? <p>Loading....</p> : <p>Data ready!</p>}
+      {loading ? 'Loading....' : 'Data ready!'}
+      <br />
+
+      {true && 'show true'}
+      <br />
+      {false && 'show false'}
+      <br />
+      {'' && 'show empty'}
+      <br />
+
+      {'0' && 'show zero string'}
+      <br />
+
+      {[].length > 0 && 'show zero'}
+      <br />
+
+      {Boolean(NaN) && 'show NaN'}
+      <br />
+
       <MainLayout>
         <StudentCard student={john} onClick={handleStudentClick} />
       </MainLayout>
