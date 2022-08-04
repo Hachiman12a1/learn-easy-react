@@ -3,26 +3,18 @@ import * as React from 'react';
 
 export interface StudentCardProps {
   student: Student;
+  onClick?: (student: Student) => void;
 }
 
-// Props are READ ONLY
-// DO NOT MUTATE Props
-//Props are immutable
-
-export function StudentCard({ student }: StudentCardProps) {
+export function StudentCard({ student, onClick }: StudentCardProps) {
   let { name, isHero } = student;
 
-  // name = 'bob'
-
   function handleClick() {
-    student.name = 'Bob';
-    console.log(student);
-    // - not trigger re-render
-    // - inconsistent data
+    onClick?.(student);
   }
 
   return (
-    <div onClick={handleClick}>
+    <div onClick={() => onClick?.(student)}>
       Student: {name} {isHero ? 'hero' : 'no-hero'}
     </div>
   );

@@ -1,28 +1,31 @@
-import { useState } from 'react'
-import './App.css'
-import { Footer, Header } from './components/common'
-import { StudentCard } from './features/labs/Student'
-import { Student } from './models/student'
+import { useState } from 'react';
+import './App.css';
+import { Footer, Header } from './components/common';
+import { StudentCard } from './features/labs/Student';
+import { Student } from './models/student';
 // import Footer from './components/common/Footer'
 // import Header from './components/common/Header'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0);
 
   function abc() {}
 
   const john: Student = {
     name: 'John',
     age: 3,
-  }
+  };
 
+  function handleStudentClick(student : Student) {
+    console.log('student click', student);
+  }
   return (
     <div>
       <Header></Header>
-      <StudentCard student={john} />
+      <StudentCard student={john} onClick={handleStudentClick} />
       <Footer></Footer>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
