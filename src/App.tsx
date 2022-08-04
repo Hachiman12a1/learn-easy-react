@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { Fragment, useEffect, useState } from 'react';
 import './App.css';
 import { Footer, Header, Widget } from './components/common';
 import { MainLayout } from './components/Layout';
@@ -32,9 +32,33 @@ function App() {
 
   // if (loading) return <p>Loading.....</p>;
 
+  // server
+  const studentList = [
+    { id: 1, name: 'easy' },
+    { id: 5, name: 'frontend' },
+  ];
+
+  // client
+  const statusList = ['pending', 'active'];
+
   return (
     <div>
-      {loading && <p>Loading....</p>}
+      <ul>
+        {studentList.map((student) => (
+          <Fragment key={student.id}>
+            <li>{student.name}</li>
+            <li>{student.name}</li>
+          </Fragment>
+        ))}
+      </ul>
+
+      <ul>
+        {statusList.map((status, idx) => (
+          <li key={idx}>{status}</li>
+        ))}
+      </ul>
+
+      {/* {loading && <p>Loading....</p>}
       {loading ? <p>Loading....</p> : <p>Data ready!</p>}
       {loading ? 'Loading....' : 'Data ready!'}
       <br />
@@ -100,7 +124,7 @@ function App() {
         <div>
           <Widget title="Earning Overview">Chart 4</Widget>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }
